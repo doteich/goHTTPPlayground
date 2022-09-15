@@ -8,6 +8,7 @@ import (
 )
 
 const route string = "/log"
+const altRoute string = ""
 
 type Data struct {
 	NodeId    string    `json:"nodeid"`
@@ -33,8 +34,13 @@ func ParseLogs(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func logBackup(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("BACKUP REQUEST")
+}
+
 func initRoutes() {
 	http.HandleFunc(route, ParseLogs)
+	http.HandleFunc(altRoute, logBackup)
 }
 
 func StartServer() {
